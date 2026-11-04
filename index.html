@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matjaryu | متجرك الإلكتروني</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f6fa;color:#111827}
+header{background:#111827;color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold}.logo span{color:#FFB71B}
+.hero{margin:25px auto;background:#2563eb;color:white;padding:45px 25px;border-radius:15px;width:90%;text-align:center}
+.hero h1{font-size:30px}.hero p{line-height:1.8}
+main{width:90%;margin:auto}
+h2{margin-top:30px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.product{background:white;border-radius:12px;padding:15px;text-align:center;box-shadow:0 2px 10px #00000010}
+.product img{width:100%;height:190px;object-fit:contain;background:#f5f5f5;border-radius:8px}
+.price{font-size:20px;font-weight:bold;color:#2563eb}
+button{background:#2563eb;color:white;border:0;padding:12px 20px;border-radius:7px;cursor:pointer;font-size:15px}
+button:hover{background:#1749aa}
+footer{text-align:center;padding:30px;background:#111827;color:white;margin-top:40px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Matjar<span>yu</span></div>
+  <div>🛒 متجر إلكتروني</div>
+</header>
+
+<section class="hero">
+  <h1>مرحبا بك في Matjaryu</h1>
+  <p>منتجات مختارة بعناية، جودة وثقة، والتوصيل حتى لباب دارك.</p>
+  <button onclick="document.getElementById('products').scrollIntoView()">تسوق الآن</button>
+</section>
+
+<main>
+  <h2 id="products">منتجاتنا</h2>
+  <div class="products" id="product-list"></div>
+</main>
+
+<footer>
+  <h3>Matjaryu</h3>
+  <p>شكراً على ثقتكم بنا ❤️</p>
+  <p>التوصيل لجميع أنحاء المغرب</p>
+</footer>
+
+<script>
+const products = [
+  {name:"منتج تجريبي 1",price:199,image:"https://placehold.co/400x300?text=Product+1"},
+  {name:"منتج تجريبي 2",price:149,image:"https://placehold.co/400x300?text=Product+2"},
+  {name:"منتج تجريبي 3",price:99,image:"https://placehold.co/400x300?text=Product+3"}
+];
+
+const list=document.getElementById("product-list");
+products.forEach(p=>{
+  list.innerHTML+=`
+    <div class="product">
+      <img src="${p.image}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <div class="price">${p.price} درهم</div>
+      <button onclick="order('${p.name}',${p.price})">اطلب الآن</button>
+    </div>`;
+});
+
+function order(name,price){
+  const phone="212600000000";
+  const message=`السلام عليكم، بغيت نطلب ${name} بثمن ${price} درهم.`;
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,"_blank");
+}
+</script>
+</body>
+</html>
